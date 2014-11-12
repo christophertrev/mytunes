@@ -5,8 +5,13 @@ var SongQueue = Songs.extend({
 
   },
 
-  enqueue: function(){
-    this.trigger('enqueue', this);
+  // enqueue: function(){
+  //   this.trigger('enqueue', this);
+  // },
+
+
+  nextSong: function(){
+
   }
 
 });
