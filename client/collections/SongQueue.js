@@ -2,6 +2,11 @@
 var SongQueue = Songs.extend({
 
   initialize: function(){
+
+  },
+
+  enqueue: function(){
+    this.trigger('enqueue', this);
   }
 
 });
