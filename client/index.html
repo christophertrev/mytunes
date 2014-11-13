@@ -15,7 +15,9 @@
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
     <script src="collections/SongQueue.js"></script>
+    <!-- <script src="collections/PlayLists.js"></script> -->
     <script src="models/AppModel.js"></script>
+    <!-- <script src="models/PlayListModel.js"></script> -->
 
     <script src="views/PlayerView.js"></script>
     <script src="views/LibraryView.js"></script>
@@ -28,7 +30,7 @@
         // set up model objects
         var library = new Songs(songData);
         var app = new AppModel({library: library});
-
+        // debugger;
         // build a view for the top level of the whole app
         var appView = new AppView({model: app});
 
