@@ -14,22 +14,31 @@ var AppView = Backbone.View.extend({
     }, this);
 
     this.renderedViews = [  this.playerView.$el,
-      $('<form>').html('<input type="text" name="playlist" id="playlist"/><input type="submit" name="submit" class="submit"/> '),
+      $('<div>').html('<input type="text" name="playlist" id="playlist"/><button name="submit" class="submit">Add PlayList</button> '),
       this.libraryView.$el,
-     // this.songQueueView.$el
+       $('<div>').addClass('playlists')
       ];
+    this.playListViews = [];
+
   },
 
   events: {
-    'submit form': 'handleSubmit'
+    'click .submit': 'handleSubmit'
   },
 
   render: function(){
-    this.$el.children().detach();
-    return this.$el.html(this.renderedViews);
+    debugger
+    // this.$el.children().detach();
+    if(this.$el.children().length===0){
+      this.$el.html(this.renderedViews);
+    }else{
+      this.$('.playlists').append(this.playListViews);
+    }
+    return this.$el;
   },
 
   handleSubmit: function(e){
+    debugger;
     e.preventDefault();
     //make new queue with name of playlist
     var $name = this.$('#playlist');
@@ -38,7 +47,7 @@ var AppView = Backbone.View.extend({
 
     this.model.addQueueToModel(name);
     var songview = new SongQueueView({collection: this.model.get(name),'name':name});
-    this.renderedViews.push(songview.$el);
+    this.playListViews.push(songview.$el);
     this.render();
   },
 
