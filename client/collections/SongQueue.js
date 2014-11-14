@@ -2,12 +2,12 @@
 var SongQueue = Songs.extend({
 
   initialize: function(){
-    this.on('add',function(){
-      if(this.length === 1){
-        //debugger;
-        this.playFirst();
-      }
-    },this);
+    // this.on('add',function(){
+    //   if(this.length === 1){
+    //     debugger;
+    //     this.playFirst();
+    //   }
+    // },this);
     //debugger;
 
     //this.set(name, params.name),
@@ -33,6 +33,7 @@ var SongQueue = Songs.extend({
 
 
   playFirst: function(){
+
     this.at(0).play();
   },
 
@@ -40,7 +41,7 @@ var SongQueue = Songs.extend({
     this.remove(this.at(0));
   },
   makeCurrentQueue: function(){
-    debugger;
+    // debugger;
     this.trigger('makeCurrentQueue',this);
 
   }
