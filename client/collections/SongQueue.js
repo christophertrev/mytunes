@@ -38,6 +38,11 @@ var SongQueue = Songs.extend({
 
   removeSong: function(){
     this.remove(this.at(0));
+  },
+  makeCurrentQueue: function(){
+    debugger;
+    this.trigger('makeCurrentQueue',this);
+
   }
 
 });

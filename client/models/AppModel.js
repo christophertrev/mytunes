@@ -17,16 +17,32 @@ var AppModel = Backbone.Model.extend({
       this.set('currentSong', song);
     }, this);
 
-    this.on('change',function(){
-      debugger
-      var changed = this.changedAttributes();
-      changed.on('click', function(){debugger});
-    });
+    // this.on('change',function(){
+    //   debugger
+    //   var changed = this.changedAttributes();
+    //   changed.on('click', function(){debugger});
+    // });
 
     params.library.on('enqueue', function(song){
       // debugger;
       this.get('currentSongQueue').add(song);
     }, this);
-  }
+  },
+
+
+    // this.on('change',function(){
+    //   debugger
+    //   var changed = this.changedAttributes();
+    //   changed.on('click', function(){debugger});
+    // });
+
+  addQueueToModel: function(name){
+    this.set(name, new SongQueue());
+    this.get(name).on('makeCurrentQueue',function(queue){
+      debugger;
+      this.set('currentSongQueue',queue);
+    }.bind(this));
+
+  },
 
 });

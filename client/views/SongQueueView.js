@@ -10,16 +10,15 @@ var SongQueueView = Backbone.View.extend({
     this.render();
     this.collection.on('add', this.render, this );
     this.collection.on('remove',this.render,this);
+    this.$('th').on('click',function(){
+      this.makeCurrentPlayList();
+    }.bind(this));
   },
 
   title: 'Current Playlist',
 
-  events:{
-    'click':'makeCurrentPlayList',
-  },
-
   render: function() {
-    this.$el.children();
+    this.$el.children().detach();
     this.$el.html('<th>'+ this.title +'</th>').append(
       this.collection.map(function(song){
         return new SongQueueEntryView({model: song}).render();
@@ -33,7 +32,9 @@ var SongQueueView = Backbone.View.extend({
   },
 
   makeCurrentPlayList: function(){
-    this.trigger('clicked',this);
+    // this.trigger('clicked',this);
+    debugger;
+    this.collection.makeCurrentQueue();
   }
 
 });
