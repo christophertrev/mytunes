@@ -2,6 +2,12 @@
 <html>
   <style>
     tr:hover{background-color:lightblue;}
+    table {
+      float:left;
+      /*background-color:grey;*/
+      /*padding-left: 2cm;*/
+      padding-right: 2cm;
+      }
   </style>
   <body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
@@ -30,7 +36,6 @@
         // set up model objects
         var library = new Songs(songData);
         var app = new AppModel({library: library});
-        // debugger;
         // build a view for the top level of the whole app
         var appView = new AppView({model: app});
 

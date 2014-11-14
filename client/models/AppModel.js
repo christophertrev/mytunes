@@ -17,7 +17,11 @@ var AppModel = Backbone.Model.extend({
       this.set('currentSong', song);
     }, this);
 
-
+    this.on('change',function(){
+      debugger
+      var changed = this.changedAttributes();
+      changed.on('click', function(){debugger});
+    });
 
     params.library.on('enqueue', function(song){
       // debugger;

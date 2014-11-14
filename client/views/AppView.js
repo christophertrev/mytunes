@@ -11,8 +11,9 @@ var AppView = Backbone.View.extend({
     this.model.on('change:currentSong', function(model){
       this.playerView.setSong(this.model.get('currentSong'));
     }, this);
+
     this.renderedViews = [  this.playerView.$el,
-      $('<form>').html('<input type="text" name="playlist" id="playlist"/>        <input type="submit" name="submit" class="submit"/> '),
+      $('<form>').html('<input type="text" name="playlist" id="playlist"/><input type="submit" name="submit" class="submit"/> '),
       this.libraryView.$el,
       this.songQueueView.$el];
   },
@@ -22,31 +23,22 @@ var AppView = Backbone.View.extend({
   },
 
   render: function(){
-    // return this.$el.html([
-    //   this.playerView.$el,
-    //   $('<form>').html('<input type="text" name="playlist" id="playlist"/>        <input type="submit" name="submit" class="submit"/> '),
-    //   this.libraryView.$el,
-    //   this.songQueueView.$el
-    // ]);
+    this.$el.children().detach();
     return this.$el.html(this.renderedViews);
   },
 
-  handleSubmit: function(){
+  handleSubmit: function(e){
+    e.preventDefault();
     //make new queue with name of playlist
     var $name = this.$('#playlist');
     var name = $name.val();
+    $name.val('');
 
     this.model.set(name, new SongQueue());
-    var songview = new SongQueueView({collection: this.model.get(name)});
-    //this.playLists.push(songview );
-    debugger
-    this.addToRender(songview);
+    var songview = new SongQueueView({collection: this.model.get(name),'name':name});
+    this.renderedViews.push(songview.$el);
+    this.render();
   },
-  addToRender : function (queueView){
-    debugger
-    this.renderedViews.push( queueView.$el);
-
-  }
 
 
 });
